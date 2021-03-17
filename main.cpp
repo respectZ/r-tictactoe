@@ -16,7 +16,7 @@ bool isCompleted = false;
 vector<int> each_digit(int x)
 {
   vector<int> digit;
-  while(x >= 10) {
+  while(x > 0) {
     digit.push_back(x % 10);
     x /= 10;
   }
@@ -40,10 +40,11 @@ void checkWinner() {
   for(auto& x : pattern) {
     vector<int> digits = each_digit(x);
     //minus by one
-    for(auto& i : digits)
+    for(auto& i : digits) {
       i--;
+    }
     
-    if(board[digits[0]] == board[digits[1]] && board[digits[0]] == board[digits[3]] && board[digits[0]] != '-') {
+    if(board[digits[0]] == board[digits[1]] && board[digits[0]] == board[digits[2]] && board[digits[0]] != '-') {
       winner = board[digits[0]] == player ? 0 : 1;
       isCompleted = true;
       return;
@@ -98,6 +99,9 @@ void mainTicTacToe() {
     checkIsCompleted();
     checkWinner();
   }
+  if(winner == -1)
+    cout << "Draw !" << endl;
+  else
   cout << "Winner : " << (winner == 0 ? "Player": "Computer") << endl;
 }
 
