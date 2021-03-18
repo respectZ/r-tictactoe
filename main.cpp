@@ -84,7 +84,7 @@ bool takeAStep() {
 void mainTicTacToe() {
   while(!isCompleted) {
     if(currentPlayer){
-      cout << "Computer step\n";
+      cout << "Computer turn\n";
       computerStep();
     }
     else {
